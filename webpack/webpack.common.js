@@ -12,11 +12,18 @@ module.exports = {
         filename: production
             ? 'static/scripts/[name].[contenthash].js'
             : 'static/scripts/[name].js',
-        publicPath: '/',
+        publicPath: production ? '/RickAndMortyCharacters/' : '/',
                 clean: true,
     },
     module: {
         rules: [
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                type: 'asset/resource',
+                generator: {
+                  filename: 'static/fonts/[name][ext]',
+                },
+              },
             {
                 test: /\.[tj]sx?$/,
                 use: [
