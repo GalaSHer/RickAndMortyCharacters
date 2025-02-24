@@ -15,8 +15,12 @@ export const App: React.FC = () => {
 
   useEffect(() => {
     if (text.length > 3) {
-      dispatch(getCharacters(text));
-    }
+      const timerID = setTimeout(() => {
+        dispatch(getCharacters(text));
+      }, 1000);
+
+    return () => clearTimeout(timerID)
+    };
   }, [text, dispatch]);
 
   return (
